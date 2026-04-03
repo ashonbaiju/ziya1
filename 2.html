@@ -1,0 +1,3509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIYA Designs - Kerala Inspired Fashion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #333333;
+            --light: #ffffff;
+            --text: #111111;
+            --text-light: #666666;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --border-radius: 10px;
+            --header-height: 80px;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            color: var(--text); 
+            background-color: var(--light); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        h1, h2, h3, h4, h5 { font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--primary); }
+        .container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header & Navigation - Mobile Optimized */
+        header { 
+            background-color: var(--light); 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03); 
+            position: fixed; 
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            z-index: 1000;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .header-top { 
+            background: var(--primary); 
+            color: var(--light); 
+            padding: 8px 0; 
+            text-align: center; 
+            font-size: 0.85rem; 
+            letter-spacing: 0.5px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            max-height: 40px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1001;
+            transform: translateY(0);
+        }
+        
+        .header-top.hidden {
+            opacity: 0;
+            max-height: 0;
+            padding: 0;
+            transform: translateY(-100%);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .header-main { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 0;
+            height: var(--header-height);
+        }
+        
+        .logo { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            text-decoration: none; 
+            margin-right: auto; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span { color: var(--accent); }
+        
+        /* Navigation Container for Right Alignment */
+        .nav-container { display: flex; align-items: center; margin-left: auto; }
+        
+        /* Simplified Navigation - Right Aligned */
+        nav ul { display: flex; list-style: none; flex-wrap: wrap; margin-right: 20px; }
+        nav ul li { margin-left: 35px; position: relative; }
+        nav ul li:first-child { margin-left: 0; }
+        nav ul li > a { 
+            text-decoration: none; 
+            color: var(--text); 
+            font-weight: 400; 
+            font-size: 1rem; 
+            transition: var(--transition); 
+            padding: 8px 0; 
+            display: block; 
+            letter-spacing: 0.3px; 
+            position: relative; 
+        }
+        nav ul li > a:hover { color: var(--primary); }
+        nav ul li > a::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 0; 
+            height: 1px; 
+            background: var(--primary); 
+            transition: var(--transition); 
+        }
+        nav ul li > a:hover::after { width: 100%; }
+        
+        .nav-icons { display: flex; align-items: center; }
+        .nav-icons a { margin-left: 20px; color: var(--text); font-size: 1rem; transition: var(--transition); }
+        .nav-icons a:hover { color: var(--primary); }
+        
+        /* Improved Hamburger Menu */
+        .hamburger { 
+            display: none; 
+            cursor: pointer; 
+            color: var(--primary);
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+            margin-left: 20px;
+        }
+        
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        
+        .hamburger span:nth-child(1) { top: 0px; }
+        .hamburger span:nth-child(2) { top: 10px; }
+        .hamburger span:nth-child(3) { top: 20px; }
+        
+        .hamburger.active span:nth-child(1) {
+            top: 10px;
+            transform: rotate(135deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            top: 10px;
+            transform: rotate(-135deg);
+        }
+        
+        /* Hero Slider - ENHANCED: Larger on mobile, covers > 70% of screen */
+        .hero-slider { 
+            position: relative; 
+            width: 100%; 
+            height: 85vh; 
+            min-height: 600px; 
+            overflow: hidden; 
+            margin-bottom: 40px;
+            margin-top: 0;
+            touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
+        }
+        
+        .slides { 
+            display: flex; 
+            width: 100%; 
+            height: 100%; 
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+            will-change: transform;
+        }
+        
+        .slide { 
+            min-width: 100%; 
+            height: 100%; 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: white; 
+            position: relative; 
+        }
+        
+        .slide::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+        }
+        
+        .slide-content { 
+            position: relative; 
+            z-index: 2; 
+            max-width: 800px; 
+            padding: 0 30px;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+        
+        .slide h1 { 
+            color: white; 
+            font-size: 3.5rem; 
+            margin-bottom: 20px; 
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+            line-height: 1.2;
+        }
+        
+        .slide p { 
+            font-size: 1.2rem; 
+            margin-bottom: 30px; 
+            opacity: 0.9; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Search Bar in Hero Section */
+        .hero-search { 
+            display: flex; 
+            justify-content: center; 
+            width: 100%; 
+            max-width: 600px; 
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        
+        .search-container { position: relative; width: 100%; }
+        .search-input { 
+            width: 100%; 
+            padding: 16px 25px; 
+            border-radius: 50px; 
+            border: none; 
+            font-size: 1rem; 
+            color: var(--text); 
+            background-color: rgba(255, 255, 255, 0.95); 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); 
+            transition: var(--transition); 
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-input:focus { 
+            outline: none; 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); 
+            background-color: rgba(255, 255, 255, 1); 
+        }
+        
+        .search-input::placeholder { color: #999; }
+        .search-button { 
+            position: absolute; 
+            right: 6px; 
+            top: 6px; 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            width: 46px; 
+            height: 46px; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            transition: var(--transition); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .search-button:hover { background: var(--accent); transform: scale(1.05); }
+        
+        .slider-btn { 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            background-color: rgba(0, 0, 0, 0.6); 
+            color: white; 
+            border: 1px solid rgba(255,255,255,0.3); 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            transition: var(--transition); 
+            z-index: 10; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+        }
+        
+        .slider-btn:hover { 
+            background-color: rgba(0, 0, 0, 0.8); 
+            transform: translateY(-50%) scale(1.1);
+            opacity: 1;
+        }
+        
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+        
+        .slider-dots { 
+            position: absolute; 
+            bottom: 25px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex; 
+            gap: 10px; 
+            z-index: 10; 
+        }
+        
+        .dot { 
+            width: 12px; 
+            height: 12px; 
+            border-radius: 50%; 
+            background-color: rgba(255, 255, 255, 0.5); 
+            cursor: pointer; 
+            transition: var(--transition); 
+        }
+        
+        .dot.active { 
+            background-color: white; 
+            transform: scale(1.3); 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Buttons - Enhanced with curved edges */
+        .btn { 
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            background: var(--primary); 
+            color: white; 
+            padding: 12px 30px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: var(--transition); 
+            border: none; 
+            cursor: pointer; 
+            letter-spacing: 0.5px; 
+            font-size: 0.95rem; 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover { 
+            background: var(--accent); 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline { 
+            background: transparent; 
+            border: 1px solid var(--primary); 
+            color: var(--primary); 
+            border-radius: 8px; 
+        }
+        
+        .btn-outline:hover { 
+            background: var(--primary); 
+            color: white; 
+        }
+        
+        /* Sections - Enhanced */
+        .section-title { 
+            text-align: center; 
+            margin: 60px 0 40px; 
+            padding: 0 20px;
+        }
+        
+        .section-title h2 { 
+            font-size: 2.5rem; 
+            margin-bottom: 15px; 
+            position: relative; 
+            display: inline-block; 
+        }
+        
+        .section-title h2::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -12px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 80px; 
+            height: 2px; 
+            background: var(--primary); 
+        }
+        
+        .section-title p { 
+            color: var(--text-light); 
+            max-width: 700px; 
+            margin: 20px auto 0; 
+            font-size: 1rem; 
+            line-height: 1.6;
+        }
+        
+        /* Product Cards - Enhanced with better image handling */
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 30px; 
+            margin-bottom: 40px; 
+            padding: 0 10px;
+        }
+        
+        .product-card { 
+            background-color: white; 
+            border-radius: var(--border-radius); 
+            overflow: hidden; 
+            box-shadow: var(--shadow); 
+            transition: var(--transition); 
+            position: relative; 
+            border: 1px solid #f5f5f5;
+            will-change: transform;
+        }
+        
+        .product-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); 
+        }
+        
+        .product-img-container { 
+            height: 320px; 
+            position: relative; 
+            overflow: hidden; 
+            background-color: #f8f8f8;
+        }
+        
+        .product-img-main, .product-img-hover { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
+            will-change: opacity;
+        }
+        
+        .product-img-main { 
+            opacity: 1; 
+            z-index: 1; 
+        }
+        
+        .product-img-hover { 
+            opacity: 0; 
+            z-index: 2; 
+        }
+        
+        .product-card:hover .product-img-main { opacity: 0; }
+        .product-card:hover .product-img-hover { opacity: 1; }
+        
+        .product-info { 
+            padding: 20px; 
+            text-align: center; 
+        }
+        
+        .product-info h3 { 
+            font-size: 1.3rem; 
+            margin-bottom: 15px; 
+            min-height: 3rem; 
+            line-height: 1.4; 
+        }
+        
+        .product-info .desc { 
+            color: var(--text-light); 
+            font-size: 0.9rem; 
+            margin-bottom: 20px; 
+            line-height: 1.5; 
+            min-height: 60px; 
+        }
+        
+        .view-more-container { 
+            text-align: center; 
+            margin: 30px 0 70px; 
+            padding: 0 20px;
+        }
+        
+        /* About Section - Enhanced */
+        .about { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 50px; 
+            align-items: center; 
+            margin-bottom: 70px; 
+            background-color: white; 
+            padding: 50px; 
+            border-radius: var(--border-radius); 
+            box-shadow: var(--shadow); 
+            border: 1px solid #f5f5f5; 
+        }
+        
+        .about-img { 
+            height: 400px; 
+            border-radius: var(--border-radius); 
+            background-color: #f8f8f8;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1));
+            z-index: 1;
+        }
+        
+        .about-content h2 { 
+            font-size: 2.5rem; 
+            margin-bottom: 20px; 
+            line-height: 1.2; 
+        }
+        
+        .about-content p { 
+            margin-bottom: 25px; 
+            color: var(--text-light); 
+            font-size: 1rem; 
+            line-height: 1.7; 
+        }
+        
+        /* Collections Section - Enhanced */
+        .collections { 
+            margin-bottom: 80px; 
+            padding: 0 10px;
+        }
+        
+        .collections-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+        }
+        
+        .collection-card { 
+            border-radius: var(--border-radius); 
+            overflow: hidden; 
+            position: relative; 
+            height: 350px; 
+            box-shadow: var(--shadow); 
+            border: 1px solid #f5f5f5;
+        }
+        
+        .collection-card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+            will-change: transform;
+        }
+        
+        .collection-card:hover img { transform: scale(1.05); }
+        
+        .collection-overlay { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); 
+            color: white; 
+            padding: 25px; 
+            z-index: 2;
+        }
+        
+        .collection-overlay h3 { 
+            color: white; 
+            font-size: 1.8rem; 
+            margin-bottom: 8px; 
+        }
+        
+        .collection-overlay a { 
+            color: white; 
+            font-weight: 500; 
+            text-decoration: none; 
+            display: inline-flex; 
+            align-items: center; 
+            margin-top: 8px; 
+            font-size: 0.9rem; 
+        }
+        
+        .collection-overlay a i { 
+            margin-left: 6px; 
+            transition: transform 0.3s ease; 
+        }
+        
+        .collection-overlay a:hover i { transform: translateX(4px); }
+        
+        /* Simple Features Section - Enhanced */
+        .simple-features { 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            justify-content: center; 
+            align-items: flex-start; 
+            gap: 30px; 
+            margin: 60px auto; 
+            padding: 30px 0; 
+            flex-wrap: wrap; 
+            border-top: 1px solid #f0f0f0; 
+            border-bottom: 1px solid #f0f0f0; 
+        }
+        
+        .simple-feature { 
+            text-align: center; 
+            padding: 10px; 
+        }
+        
+        .simple-feature-icon { 
+            font-size: 1.8rem; 
+            margin-bottom: 12px; 
+            color: var(--primary); 
+            height: 60px; 
+            width: 60px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 0 auto 15px; 
+            background-color: #f8f8f8; 
+            border-radius: 50%; 
+            transition: var(--transition); 
+        }
+        
+        .simple-feature:hover .simple-feature-icon { 
+            background-color: #f0f0f0; 
+            transform: translateY(-3px); 
+        }
+        
+        .simple-feature h3 { 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            margin-bottom: 6px; 
+            color: var(--text); 
+            font-family: 'Poppins', sans-serif; 
+            letter-spacing: 0.5px; 
+            text-transform: uppercase; 
+        }
+        
+        .simple-feature p { 
+            color: var(--text-light); 
+            font-size: 0.8rem; 
+            line-height: 1.4; 
+            max-width: 180px; 
+            margin: 0 auto; 
+        }
+        
+        /* Footer - Enhanced */
+        footer { 
+            background: var(--primary); 
+            color: white; 
+            padding: 60px 0 25px; 
+        }
+        
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 40px; 
+            margin-bottom: 50px; 
+        }
+        
+        .footer-column h3 { 
+            font-size: 1.4rem; 
+            margin-bottom: 25px; 
+            color: white; 
+        }
+        
+        .footer-column p { 
+            opacity: 0.8; 
+            margin-bottom: 20px; 
+            line-height: 1.7; 
+            font-size: 0.95rem; 
+        }
+        
+        .footer-column ul { 
+            list-style: none; 
+        }
+        
+        .footer-column ul li { 
+            margin-bottom: 12px; 
+        }
+        
+        .footer-column ul li a { 
+            color: white; 
+            text-decoration: none; 
+            opacity: 0.8; 
+            transition: var(--transition); 
+            display: inline-block; 
+            font-size: 0.9rem; 
+        }
+        
+        .footer-column ul li a:hover { 
+            opacity: 1; 
+            transform: translateX(4px); 
+        }
+        
+        .contact-info li { 
+            display: flex; 
+            align-items: flex-start; 
+            margin-bottom: 18px; 
+        }
+        
+        .contact-info li i { 
+            margin-right: 12px; 
+            color: white; 
+            margin-top: 4px; 
+            flex-shrink: 0; 
+            font-size: 0.9rem; 
+        }
+        
+        .contact-info li span { 
+            font-size: 0.9rem; 
+            opacity: 0.9; 
+            line-height: 1.4;
+        }
+        
+        .social-icons { 
+            display: flex; 
+            margin-top: 20px; 
+        }
+        
+        .social-icons a { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 38px; 
+            height: 38px; 
+            background-color: rgba(255, 255, 255, 0.08); 
+            border-radius: 50%; 
+            margin-right: 12px; 
+            color: white; 
+            transition: var(--transition); 
+            font-size: 0.9rem; 
+        }
+        
+        .social-icons a:hover { 
+            background-color: rgba(255, 255, 255, 0.15); 
+            transform: translateY(-3px); 
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 30px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+            font-size: 0.85rem; 
+            opacity: 0.7; 
+        }
+        
+        /* Product Detail Modal */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .product-modal.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: var(--light);
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: modalAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .product-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close-modal:hover {
+            background-color: #f5f5f5;
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 30px;
+        }
+        
+        .modal-images {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .modal-main-image {
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+        
+        .modal-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-thumbnails {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .modal-thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .modal-thumbnail.active {
+            border-color: var(--primary);
+        }
+        
+        .modal-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-description {
+            margin-bottom: 25px;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+        
+        .modal-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .modal-section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        /* Image Loading Placeholder */
+        .img-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Mobile Navigation Styles - Enhanced */
+        @media (max-width: 900px) {
+            nav ul { 
+                position: fixed; 
+                top: 0; 
+                left: -100%; 
+                flex-direction: column; 
+                background-color: var(--light); 
+                width: 100%; 
+                height: 100vh;
+                text-align: center; 
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05); 
+                transition: var(--transition); 
+                z-index: 999; 
+                padding: 100px 0 40px; 
+                overflow-y: auto;
+                margin-right: 0; 
+                justify-content: flex-start;
+                backdrop-filter: blur(10px);
+                background-color: rgba(255, 255, 255, 0.98);
+            }
+            
+            nav ul.active { left: 0; }
+            nav ul li { 
+                margin: 0; 
+                padding: 18px 0; 
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+                width: 100%;
+            }
+            
+            nav ul li a {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+            
+            .hamburger { 
+                display: block; 
+            }
+            
+            .nav-icons { 
+                display: none; 
+            }
+            
+            /* Modal adjustments for mobile */
+            .modal-body {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .modal-header {
+                padding: 15px 20px;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.6rem;
+            }
+            
+            .modal-main-image {
+                height: 300px;
+            }
+            
+            .modal-thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .order-buttons {
+                flex-direction: column;
+            }
+            
+            .order-buttons .btn {
+                width: 100%;
+            }
+            
+            /* Custom size form adjustments */
+            .measurement-guide {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .custom-size-body {
+                padding: 20px;
+            }
+            
+            .size-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions .btn {
+                width: 100%;
+            }
+            
+            /* Measurement form with images - mobile adjustments */
+            .measurement-with-image {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .measurement-image {
+                max-width: 100%;
+                height: 180px;
+            }
+            
+            .measurement-input-container {
+                width: 100%;
+            }
+        }
+        
+        /* Responsive Design - ENHANCED for mobile with larger slider */
+        @media (max-width: 1100px) {
+            nav ul li { margin-left: 25px; }
+            
+            .hero-slider { 
+                height: 80vh; /* Increased height for tablet */
+                min-height: 550px;
+            }
+            
+            .slide h1 { 
+                font-size: 3rem; 
+                padding: 0 20px;
+            }
+            
+            .products-grid { 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 25px;
+            }
+            
+            .simple-features { 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 25px; 
+                padding: 30px 20px;
+            }
+            
+            .about {
+                gap: 40px;
+                padding: 40px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .hero-slider { 
+                height: 75vh; /* Larger for mobile */
+                min-height: 450px; 
+            }
+            
+            .slide h1 { 
+                font-size: 2.8rem; /* Larger text */
+                line-height: 1.3;
+                margin-bottom: 25px;
+            }
+            
+            .slide p { 
+                font-size: 1.2rem; /* Larger text */
+                padding: 0 20px;
+                margin-bottom: 35px;
+            }
+            
+            .about, .about-alt { 
+                grid-template-columns: 1fr; 
+                gap: 30px;
+                padding: 30px;
+            }
+            
+            .about-img { 
+                height: 300px; 
+                order: -1; 
+            }
+            
+            .slider-btn { 
+                width: 45px; 
+                height: 45px; 
+                font-size: 1rem; 
+                opacity: 0.8;
+            }
+            
+            .products-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 20px;
+            }
+            
+            .nav-container { 
+                margin-left: 0; 
+            }
+            
+            .simple-features { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 30px; 
+                padding: 30px 15px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            /* MOBILE OPTIMIZATION - Larger slider covers > 70% of screen */
+            .hero-slider {
+                height: 70vh; /* Covers majority of screen */
+                min-height: 400px;
+                margin-bottom: 30px;
+                touch-action: pan-y pinch-zoom; /* Explicitly allow vertical scrolling */
+            }
+            
+            .slide h1 {
+                font-size: 2.5rem; /* Larger for mobile visibility */
+                line-height: 1.2;
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+            
+            .slide p {
+                font-size: 1.1rem;
+                padding: 0 20px;
+                margin-bottom: 30px;
+            }
+            
+            .search-input {
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .search-button {
+                width: 42px;
+                height: 42px;
+                top: 5px;
+                right: 5px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .simple-features {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 30px 10px;
+                margin: 40px auto;
+            }
+            
+            .simple-feature {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+            
+            /* Mobile slider buttons - larger for touch */
+            .slider-btn {
+                width: 45px;
+                height: 45px;
+                opacity: 0.8;
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+            
+            .prev-btn {
+                left: 10px;
+            }
+            
+            .next-btn {
+                right: 10px;
+            }
+            
+            .slider-dots {
+                bottom: 20px;
+            }
+            
+            .dot {
+                width: 14px;
+                height: 14px;
+            }
+            
+            .dot.active {
+                transform: scale(1.4);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            :root {
+                --header-height: 60px;
+            }
+            
+            .header-main {
+                height: var(--header-height);
+                padding: 10px 0;
+            }
+            
+            .logo { 
+                font-size: 1.8rem; 
+            }
+            
+            /* MOBILE-OPTIMIZED LARGE SLIDER - Covers > 75% of screen */
+            .hero-slider { 
+                height: 75vh; /* Increased to cover more screen */
+                min-height: 380px; 
+                touch-action: pan-y pinch-zoom;
+            }
+            
+            .slide h1 { 
+                font-size: 2.2rem; /* Prominent on mobile */
+                margin-bottom: 20px;
+                line-height: 1.3;
+            }
+            
+            .slide p { 
+                font-size: 1rem; 
+                padding: 0 15px; 
+                margin-bottom: 25px;
+            }
+            
+            .section-title { 
+                margin: 40px 0 30px; 
+            }
+            
+            .section-title h2 { 
+                font-size: 2rem; 
+            }
+            
+            .section-title p {
+                font-size: 0.9rem;
+                padding: 0 10px;
+            }
+            
+            .products-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px; 
+                padding: 0 5px;
+            }
+            
+            .product-img-container { 
+                height: 220px; 
+            }
+            
+            .product-info {
+                padding: 15px;
+            }
+            
+            .product-info h3 {
+                font-size: 1.1rem;
+                min-height: 2.5rem;
+            }
+            
+            .about, .about-alt { 
+                padding: 25px 20px; 
+                margin-bottom: 50px;
+            }
+            
+            .about-img {
+                height: 250px;
+            }
+            
+            .about-content h2 {
+                font-size: 2rem;
+            }
+            
+            .collections-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            
+            .collection-card { 
+                height: 280px; 
+            }
+            
+            .footer-content { 
+                grid-template-columns: 1fr; 
+                gap: 35px; 
+                padding: 0 20px;
+            }
+            
+            .header-top { 
+                font-size: 0.8rem; 
+                padding: 6px 0; 
+            }
+            
+            nav ul li { 
+                margin-left: 15px; 
+            }
+            
+            nav ul li > a { 
+                font-size: 0.95rem; 
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .slider-dots {
+                bottom: 15px;
+            }
+            
+            .prev-btn, .next-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* EXTRA SMALL DEVICES - Even larger slider */
+            .hero-slider {
+                height: 70vh; /* Covers majority of small screens */
+                min-height: 350px;
+                touch-action: pan-y pinch-zoom;
+            }
+            
+            .slide h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+                padding: 0 10px;
+            }
+            
+            .slide p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+            
+            .products-grid { 
+                grid-template-columns: 1fr; 
+                max-width: 350px;
+                margin-left: auto;
+                margin-right: auto;
+                gap: 20px;
+            }
+            
+            .product-img-container {
+                height: 280px;
+            }
+            
+            .search-input { 
+                padding: 12px 18px; 
+                font-size: 0.9rem; 
+            }
+            
+            .search-button { 
+                width: 38px; 
+                height: 38px; 
+                font-size: 1rem; 
+            }
+            
+            .logo {
+                font-size: 1.6rem;
+            }
+            
+            .footer-bottom {
+                padding: 20px 15px 0;
+            }
+            
+            .footer-bottom p {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+            
+            .modal-body {
+                padding: 15px;
+            }
+            
+            .modal-main-image {
+                height: 250px;
+            }
+            
+            .order-actions {
+                padding: 15px;
+            }
+            
+            .custom-size-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+            
+            .custom-size-body {
+                padding: 15px;
+            }
+            
+            /* Larger slider dots for mobile */
+            .slider-dots {
+                bottom: 12px;
+            }
+            
+            .dot {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .dot.active {
+                transform: scale(1.5);
+            }
+        }
+        
+        @media (max-width: 360px) {
+            /* SMALLEST DEVICES - Maximum slider coverage */
+            .hero-slider {
+                height: 68vh; /* Maximum coverage */
+                min-height: 320px;
+                touch-action: pan-y pinch-zoom;
+            }
+            
+            .slide h1 {
+                font-size: 1.8rem;
+                margin-bottom: 12px;
+            }
+            
+            .slide p {
+                font-size: 0.9rem;
+                margin-bottom: 18px;
+            }
+            
+            .product-img-container {
+                height: 240px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .size-option {
+                width: 40px;
+                height: 40px;
+            }
+            
+            /* Optimize slider buttons for very small screens */
+            .slider-btn {
+                width: 38px;
+                height: 38px;
+                opacity: 0.7;
+            }
+            
+            .prev-btn {
+                left: 8px;
+            }
+            
+            .next-btn {
+                right: 8px;
+            }
+        }
+        
+        /* Scroll Animation Classes */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Smooth scrolling for the entire page */
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Performance optimization */
+        .slide, .product-img-main, .product-img-hover, .collection-card img {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        /* Loading state for images */
+        .img-loading {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+        
+        .img-loaded {
+            filter: blur(0);
+        }
+        
+        /* Touch swipe indicator for mobile */
+        .swipe-hint {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        @media (max-width: 768px) {
+            .swipe-hint {
+                display: flex;
+                opacity: 0.3;
+                bottom: 50px;
+                font-size: 0.7rem;
+            }
+        }
+        
+        /* FIXED: Ensure proper spacing after fixed header */
+        main {
+            margin-top: var(--header-height);
+        }
+        
+        /* Material List & Categories Styling */
+        .material-list {
+            list-style-type: none;
+        }
+        
+        .material-list li {
+            padding: 10px 0;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        
+        .material-list li i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* Categories - Enhanced with curved pill-shaped buttons */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .category-tag {
+            background-color: #f8f8f8;
+            color: var(--text);
+            padding: 10px 22px;
+            border-radius: 50px; /* Pill-shaped */
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            border: 1px solid #f0f0f0;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .category-tag:hover { 
+            background-color: var(--primary); 
+            color: white; 
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+        
+        /* Size selector - Enhanced with curved edges */
+        .size-selector {
+            margin: 20px 0;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .size-option {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            border-radius: 12px; /* Curved edges */
+        }
+        
+        .size-option:hover, .size-option.selected {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+            border-radius: 12px; /* Match the curve */
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-actions {
+            margin: 30px 0;
+            padding: 25px;
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .order-actions h3 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+        
+        .order-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 600;
+            border-radius: 8px; /* Curved edges */
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+        }
+        
+        .custom-order-btn {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px; /* Curved edges */
+        }
+        
+        .custom-order-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+        
+        .rating-value {
+            font-weight: 600;
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .review-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .customer-reviews {
+            margin-top: 15px;
+        }
+        
+        .review {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            border: 1px solid #f0f0f0;
+            transition: var(--transition);
+        }
+        
+        .review:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .review-date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        
+        .review-text {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Custom Size Form Modal */
+        .custom-size-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2001;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .custom-size-modal.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .custom-size-content {
+            background-color: var(--light);
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .custom-size-modal.active .custom-size-content {
+            transform: translateY(0);
+        }
+        
+        .custom-size-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .custom-size-header h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .close-custom-size {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close-custom-size:hover {
+            background-color: #f5f5f5;
+            transform: rotate(90deg);
+        }
+        
+        .custom-size-body {
+            padding: 30px;
+        }
+        
+        .size-form-intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .size-form-intro h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .size-form-intro p {
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .measurement-guide {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .guide-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .guide-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .step-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .size-form-container {
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            border: 1px solid #f0f0f0;
+        }
+        
+        /* NEW: Measurement form with images */
+        .size-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .measurement-with-image {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            border: 1px solid #f0f0f0;
+            transition: var(--transition);
+        }
+        
+        .measurement-with-image:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .measurement-image {
+            flex-shrink: 0;
+            width: 180px;
+            height: 180px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .measurement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        
+        .measurement-with-image:hover .measurement-image img {
+            transform: scale(1.05);
+        }
+        
+        .measurement-input-container {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .measurement-unit {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: block;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        
+        .address-field {
+            grid-column: 1 / -1;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .form-actions .btn {
+            min-width: 180px;
+            border-radius: 8px; /* Curved edges */
+        }
+        
+        /* Responsive adjustments for the custom size form */
+        @media (max-width: 768px) {
+            .measurement-guide {
+                gap: 20px;
+            }
+            
+            .custom-size-body {
+                padding: 20px;
+            }
+            
+            .size-form {
+                gap: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .size-form-container {
+                padding: 20px;
+            }
+            
+            .measurement-with-image {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .measurement-image {
+                width: 100%;
+                max-width: 250px;
+                height: 180px;
+            }
+            
+            .measurement-input-container {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .custom-size-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+            
+            .custom-size-body {
+                padding: 15px;
+            }
+            
+            .size-form-intro h3 {
+                font-size: 1.5rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions .btn {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - Simplified with Navigation on Right -->
+    <header id="mainHeader">
+        <div class="header-top" id="headerTop">
+            <div class="container">Custom stitched | Personal designer assistance</div>
+        </div>
+        <div class="container">
+            <div class="header-main">
+                <a href="#" class="logo">ZIYA<span>Designs</span></a>
+                
+                <div class="nav-container">
+                    <nav>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#products">Collections</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#collections">Featured</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Slider - ENHANCED for mobile -->
+        <section class="hero-slider">
+            <div class="slides">
+                <div class="slide" data-bg="https://github.com/ashonbaiju/ziyadesigns1/blob/main/Customized%20umberlla%20palazo%20set%20%F0%9F%91%97%F0%9F%AA%A1%E2%9C%88%EF%B8%8F%E2%9C%88%EF%B8%8FINTERNATIONAL%20SHIPPING%20AVAILABLE%20%E2%9C%88%EF%B8%8F%E2%9C%88%EF%B8%8FDM%20FOR%20MORE%20ENQUIRE.webp?raw=true">
+                    <div class="img-placeholder"></div>
+                    <div class="slide-content">
+                        <h1>Kerala's Finest Fashion</h1>
+                        <p>Handcrafted designer wear inspired by the rich cultural heritage of Kerala, tailored to modern elegance.</p>
+                        <div class="hero-search">
+                            <div class="search-container">
+                                <input type="text" class="search-input" placeholder="Search for traditional designs...">
+                                <button class="search-button"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" data-bg="https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkaliset2.jpg">
+                    <div class="img-placeholder"></div>
+                    <div class="slide-content">
+                        <h1>Custom Stitched Perfection</h1>
+                        <p>Every garment is custom-made to your measurements, ensuring the perfect fit and personal touch.</p>
+                        <div class="hero-search">
+                            <div class="search-container">
+                                <input type="text" class="search-input" placeholder="Explore our collections...">
+                                <button class="search-button"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" data-bg="https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkaliset3.jpg">
+                    <div class="img-placeholder"></div>
+                    <div class="slide-content">
+                        <h1>International Shipping Available</h1>
+                        <p>Bringing Kerala's fashion to your doorstep, no matter where you are in the world.</p>
+                        <div class="hero-search">
+                            <div class="search-container">
+                                <input type="text" class="search-input" placeholder="Find your perfect outfit...">
+                                <button class="search-button"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            
+            <div class="slider-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            
+            <div class="swipe-hint">
+                <i class="fas fa-arrows-left-right"></i> Swipe to navigate
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <div class="container">
+            <div class="section-title" id="products">
+                <h2>Featured Collections</h2>
+                <p>Discover our exquisite range of handcrafted designer wear, each piece telling a story of tradition and elegance.</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card" data-product="1">
+                    <div class="product-img-container">
+                        <div class="img-placeholder"></div>
+                        <div class="product-img-main" style="background-image: url('https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali.jpg')"></div>
+                        <div class="product-img-hover" style="background-image: url('https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali1.jpg')"></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Traditional Anarkali</h3>
+                        <p class="desc">Flowing Anarkali suits with intricate embroidery and traditional Kerala motifs.</p>
+                        <a href="#" class="btn btn-outline view-details">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-product="2">
+                    <div class="product-img-container">
+                        <div class="img-placeholder"></div>
+                        <div class="product-img-main" style="background-image: url('https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designer1kurtha.jpg')"></div>
+                        <div class="product-img-hover" style="background-image: url('https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designer2kurtha.jpg')"></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Kurtas</h3>
+                        <p class="desc">Contemporary kurtas with traditional Kerala borders and modern silhouettes.</p>
+                        <a href="#" class="btn btn-outline view-details">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-product="3">
+                    <div class="product-img-container">
+                        <div class="img-placeholder"></div>
+                        <div class="product-img-main" style="background-image: url('https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designerfrock.jpg')"></div>
+                        <div class="product-img-hover" style="background-image: url('https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designerfrock1.jpg')"></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Frocks</h3>
+                        <p class="desc">Elegant frocks blending traditional Kerala craftsmanship with modern design.</p>
+                        <a href="#" class="btn btn-outline view-details">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-product="4">
+                    <div class="product-img-container">
+                        <div class="img-placeholder"></div>
+                        <div class="product-img-main" style="background-image: url('https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Pleated1frock.jpg')"></div>
+                        <div class="product-img-hover" style="background-image: url('https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Pleated2frock.jpg')"></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Pleated Frocks</h3>
+                        <p class="desc">Graceful pleated frocks with handcrafted details and comfortable fits.</p>
+                        <a href="#" class="btn btn-outline view-details">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-more-container">
+                <a href="collection 2.html" class="btn">View All Collections</a>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="container">
+            <div class="about" id="about">
+                <div class="about-img">
+                    <div class="img-placeholder"></div>
+                    <img src="https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali.jpg" alt="ZIYA Designs" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="about-content">
+                    <h2>Our Story</h2>
+                    <p>ZIYA Designs was born from a deep appreciation for Kerala's rich textile heritage. Our founder, inspired by the intricate weaves and vibrant colors of traditional Kerala sarees and fabrics, embarked on a journey to bring this legacy to contemporary fashion.</p>
+                    <p>Each piece in our collection is meticulously crafted by skilled artisans who have inherited centuries-old techniques. We blend these traditional methods with modern design sensibilities to create garments that are both timeless and contemporary.</p>
+                    <p>Our commitment to quality extends beyond aesthetics. We use only the finest fabrics, ensuring that each garment feels as exquisite as it looks. Every piece is custom-stitched to order, allowing for personalized modifications and perfect fit.</p>
+                    <a href="#" class="btn">Learn More About Us</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simple Features -->
+        <div class="container">
+            <div class="simple-features">
+                <div class="simple-feature">
+                    <div class="simple-feature-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Custom Tailoring</h3>
+                    <p>Every piece made to your exact measurements for perfect fit.</p>
+                </div>
+                <div class="simple-feature">
+                    <div class="simple-feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Worldwide Shipping</h3>
+                    <p>We deliver across the globe with reliable shipping partners.</p>
+                </div>
+                <div class="simple-feature">
+                    <div class="simple-feature-icon">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <h3>Handcrafted</h3>
+                    <p>Each garment features hand embroidery and traditional techniques.</p>
+                </div>
+                <div class="simple-feature">
+                    <div class="simple-feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Premium Fabrics</h3>
+                    <p>We use only the highest quality natural fabrics and materials.</p>
+                </div>
+                <div class="simple-feature">
+                    <div class="simple-feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Designer Support</h3>
+                    <p>Personal designer assistance for all your fashion queries.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collections Section -->
+        <div class="container">
+            <div class="section-title" id="collections">
+                <h2>Featured Collections</h2>
+                <p>Explore our curated collections that showcase the diversity of Kerala's textile traditions.</p>
+            </div>
+            
+            <div class="collections">
+                <div class="collections-grid">
+                    <div class="collection-card">
+                        <div class="img-placeholder"></div>
+                        <img src="https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkaliset4.jpg" alt="Anarkali Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Anarkali Sets</h3>
+                            <p>Traditional elegance with modern flair</p>
+                            <a href="#">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <div class="img-placeholder"></div>
+                        <img src="https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Customized%20umberlla%20palazo%20set%20%F0%9F%91%97%F0%9F%AA%A1%F0%9F%8C%88%F0%9F%8C%88INTERNATIONAL%20SHIPPING%20AVAILABLE%20%F0%9F%8C%88%F0%9F%8C%88DM%20FOR%20MORE%20ENQUIRE%20(1).webp" alt="Palazzo Set" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Umbrella Palazzo Sets</h3>
+                            <p>Custom designed for special occasions</p>
+                            <a href="#">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <div class="img-placeholder"></div>
+                        <img src="https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Customized%20umberlla%20palazo%20set%20%F0%9F%91%97%F0%9F%AA%A1%F0%9F%8C%88%F0%9F%8C%88INTERNATIONAL%20SHIPPING%20AVAILABLE%20%F0%9F%8C%88%F0%9F%8C%88DM%20FOR%20MORE%20ENQUIRE.webp" alt="Designer Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Designer Collection</h3>
+                            <p>Exclusive designs for discerning tastes</p>
+                            <a href="#">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ZIYA Designs</h3>
+                    <p>Bringing Kerala's rich textile heritage to contemporary fashion through handcrafted, custom-designed garments that celebrate tradition with modern elegance.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://wa.me/918590443672" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#products">Collections</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#collections">Featured</a></li>
+                        <li><a href="#">Custom Orders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kochi, Kerala, India</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 80787 20263</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@ziyadesigns.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sat: 10AM - 7PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZIYA Designs. All rights reserved. </p>
+                <p style="margin-top: 10px;">
+                    <a href="https://wa.me/918078720263" target="_blank" style="color: white; text-decoration: none; opacity: 0.9;">
+                        <i class="fab fa-whatsapp" style="margin-right: 5px; color: #25D366;"></i> Enquire Now on WhatsApp
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Detail Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalProductTitle">Traditional Anarkali</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-images">
+                    <div class="modal-main-image">
+                        <div class="img-placeholder"></div>
+                        <img id="modalMainImage" src="https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali.jpg" alt="Product Image">
+                    </div>
+                    <div class="modal-thumbnails" id="modalThumbnails">
+                        <!-- Thumbnails will be dynamically added here -->
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <div class="modal-description" id="modalDescription">
+                        Flowing Anarkali suits with intricate embroidery and traditional Kerala motifs. This elegant piece is perfect for weddings, festivals, and special occasions. Made with premium quality fabric that drapes beautifully.
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">Materials Used</h3>
+                        <ul class="material-list" id="modalMaterials">
+                            <!-- Materials will be dynamically added here -->
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">Categories</h3>
+                        <div class="categories" id="modalCategories">
+                            <!-- Categories will be dynamically added here -->
+                        </div>
+                    </div>
+                    
+                    <div class="size-selector">
+                        <h3 class="modal-section-title">Select Size</h3>
+                        <p style="color: var(--text-light); margin-bottom: 15px; font-size: 0.9rem;">Choose your preferred size for this garment:</p>
+                        <div class="size-options">
+                            <div class="size-option" data-size="S">S</div>
+                            <div class="size-option selected" data-size="M">M</div>
+                            <div class="size-option" data-size="L">L</div>
+                            <div class="size-option" data-size="XL">XL</div>
+                        </div>
+                        <p style="color: var(--text-light); margin-top: 15px; font-size: 0.85rem;">
+                            <i class="fas fa-info-circle" style="margin-right: 5px;"></i> All sizes are custom stitched to your measurements
+                        </p>
+                    </div>
+                    
+                    <div class="order-actions">
+                        <h3>Ready to Order?</h3>
+                        <div class="order-buttons">
+                            <button id="whatsappEnquireBtn" class="btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Enquire Now on WhatsApp
+                            </button>
+                            <button class="btn custom-order-btn" id="enterCustomSizesBtn">
+                                <i class="fas fa-ruler-combined"></i> Enter Custom Sizes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">Customer Reviews</h3>
+                        <div class="rating-section" id="modalRating">
+                            <!-- Rating will be dynamically added here -->
+                        </div>
+                        <div class="customer-reviews" id="modalReviews">
+                            <!-- Reviews will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Size Form Modal -->
+    <div class="custom-size-modal" id="customSizeModal">
+        <div class="custom-size-content">
+            <div class="custom-size-header">
+                <h2>Custom Size Measurements</h2>
+                <button class="close-custom-size" id="closeCustomSizeModal">&times;</button>
+            </div>
+            <div class="custom-size-body">
+                <div class="size-form-intro">
+                    <h3>Get a Perfect Fit Every Time</h3>
+                    <p>Please provide your measurements in inches for a perfectly tailored fit. Our expert tailors will use these specifications to create a garment that fits you like a dream. Follow the guide below for accurate measurements.</p>
+                </div>
+                
+                <div class="measurement-guide">
+                    <div class="guide-steps">
+                        <div class="guide-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Use a Soft Measuring Tape</h4>
+                                <p>Always use a flexible cloth measuring tape for accurate measurements. Do not use a metal tape measure.</p>
+                            </div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Wear Fitted Clothing</h4>
+                                <p>Wear the undergarments you plan to wear with the garment when taking measurements for the most accurate fit.</p>
+                            </div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Stand Naturally</h4>
+                                <p>Stand straight with your feet together and arms at your sides. Don't suck in your stomach or stand unnaturally.</p>
+                            </div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Keep Tape Snug</h4>
+                                <p>The tape should be snug but not tight against your body. Make sure it's parallel to the floor for horizontal measurements.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="size-form-container">
+                    <h3 style="margin-bottom: 20px; text-align: center;">Your Detailed Measurements</h3>
+                    <p style="color: var(--text-light); text-align: center; margin-bottom: 30px;">Fill in all measurements in inches for the most accurate custom fit. Required fields are marked with *</p>
+                    
+                    <div class="size-form" id="customSizeForm">
+                        <!-- Bust/Chest Measurement -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Bust.jpg" alt="How to measure bust/chest">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="bust">Bust/Chest <span style="color: var(--primary);">*</span></label>
+                                    <input type="number" id="bust" placeholder="Enter in inches" required step="0.5" min="20" max="60">
+                                    <span class="measurement-unit">Measure around the fullest part of your bust/chest</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Waist Measurement -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Waist.jpg" alt="How to measure waist">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="waist">Waist <span style="color: var(--primary);">*</span></label>
+                                    <input type="number" id="waist" placeholder="Enter in inches" required step="0.5" min="20" max="60">
+                                    <span class="measurement-unit">Measure around your natural waistline (smallest part)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Height Measurement -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Hight.jpg" alt="How to measure height">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="height">Height (Barebody) <span style="color: var(--primary);">*</span></label>
+                                    <input type="number" id="height" placeholder="Enter in inches" required step="0.5" min="48" max="84">
+                                    <span class="measurement-unit">Measure without shoes, from top of head to heels</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hips Measurement -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Hollowtoflowr.jpg" alt="How to measure hips">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="hips">Hips <span style="color: var(--primary);">*</span></label>
+                                    <input type="number" id="hips" placeholder="Enter in inches" required step="0.5" min="30" max="70">
+                                    <span class="measurement-unit">Measure around the fullest part of your hips</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Shoulder to Shoulder (Back) Measurement -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Shouldertoshoulder_back.jpg" alt="How to measure shoulder to shoulder">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="shoulder-to-shoulder">Shoulder to Shoulder (Back) <span style="color: var(--primary);">*</span></label>
+                                    <input type="number" id="shoulder-to-shoulder" placeholder="Enter in inches" required step="0.5" min="12" max="24">
+                                    <span class="measurement-unit">Measure from shoulder edge to shoulder edge across back</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Arm Length Measurement -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Armlength.jpg" alt="How to measure arm length">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="arm-length">Arm Length <span style="color: var(--primary);">*</span></label>
+                                    <input type="number" id="arm-length" placeholder="Enter in inches" required step="0.5" min="20" max="36">
+                                    <span class="measurement-unit">Measure from shoulder to wrist with arm slightly bent</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bicep Measurement -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Biceps.jpg" alt="How to measure bicep">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="bicep">Bicep</label>
+                                    <input type="number" id="bicep" placeholder="Enter in inches" step="0.5" min="8" max="20">
+                                    <span class="measurement-unit">Measure around the fullest part of your upper arm</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Shoulder to Waist Measurement -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Shouldertowaist.jpg" alt="How to measure shoulder to waist">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="shoulder-to-waist">Shoulder to Waist <span style="color: var(--primary);">*</span></label>
+                                    <input type="number" id="shoulder-to-waist" placeholder="Enter in inches" required step="0.5" min="14" max="24">
+                                    <span class="measurement-unit">Measure from shoulder top to natural waistline</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Garment Length Selection -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Hollowtowaist.jpg" alt="Garment length reference">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="garment-length">Desired Garment Length</label>
+                                    <select id="garment-length">
+                                        <option value="">Select length preference</option>
+                                        <option value="ankle">Ankle Length</option>
+                                        <option value="calf">Calf Length</option>
+                                        <option value="knee">Knee Length</option>
+                                        <option value="above-knee">Above Knee</option>
+                                    </select>
+                                    <span class="measurement-unit">For dresses, kurtas, and frocks</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sleeve Length Selection -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <img src="https://raw.githubusercontent.com/ashonbaiju/Size/main/Armlength.jpg" alt="Sleeve length reference">
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="sleeve-length">Sleeve Length</label>
+                                    <select id="sleeve-length">
+                                        <option value="">Select sleeve preference</option>
+                                        <option value="sleeveless">Sleeveless</option>
+                                        <option value="short">Short Sleeve</option>
+                                        <option value="threequarter">3/4 Sleeve</option>
+                                        <option value="full">Full Length</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Notes -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #f8f8f8; color: var(--text-light); font-size: 1.5rem;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="additional-notes">Additional Notes</label>
+                                    <textarea id="additional-notes" placeholder="Any special requirements, preferences, or notes about your measurements..." rows="3"></textarea>
+                                    <span class="measurement-unit">E.g., "I prefer looser fit", "Left shoulder slightly higher", etc.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Address Field -->
+                        <div class="measurement-with-image">
+                            <div class="measurement-image">
+                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #f8f8f8; color: var(--text-light); font-size: 1.5rem;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="measurement-input-container">
+                                <div class="form-group">
+                                    <label for="address">Shipping Address <span style="color: var(--primary);">*</span></label>
+                                    <textarea id="address" placeholder="Enter your complete shipping address including house number, street, city, state, and PIN code" rows="4" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn" id="submitCustomSizes">
+                            <i class="fas fa-check-circle"></i> Submit Measurements
+                        </button>
+                        <button class="btn btn-outline" id="backToProductBtn">
+                            <i class="fas fa-arrow-left"></i> Back to Product Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('nav ul');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Header Top Banner - Show for 3 seconds then hide with fade effect
+        const headerTop = document.getElementById('headerTop');
+        let hasHeaderTopBeenHidden = false;
+        
+        function hideHeaderTop() {
+            headerTop.classList.add('hidden');
+            hasHeaderTopBeenHidden = true;
+        }
+        
+        // Show header top on page load
+        window.addEventListener('load', () => {
+            // Only show if it hasn't been hidden before (check localStorage)
+            const headerHidden = localStorage.getItem('headerTopHidden');
+            
+            if (!headerHidden) {
+                // Show header top
+                headerTop.classList.remove('hidden');
+                
+                // Set timer to hide after 3 seconds
+                setTimeout(hideHeaderTop, 3000);
+                
+                // Store in localStorage that header has been shown and hidden
+                setTimeout(() => {
+                    localStorage.setItem('headerTopHidden', 'true');
+                }, 3000);
+            } else {
+                // If already hidden before, keep it hidden
+                headerTop.classList.add('hidden');
+                hasHeaderTopBeenHidden = true;
+            }
+        });
+        
+        // Improved Hero Slider Functionality with image preloading
+        let currentSlide = 0;
+        let slideInterval;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const heroSlider = document.querySelector('.hero-slider');
+        
+        // Variables for touch handling
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        let isSwiping = false;
+        const SWIPE_THRESHOLD = 50; // Minimum distance for a swipe
+        
+        // Preload slider images
+        function preloadSliderImages() {
+            slides.forEach(slide => {
+                const bgUrl = slide.getAttribute('data-bg');
+                if (bgUrl) {
+                    const img = new Image();
+                    img.src = bgUrl;
+                    img.onload = () => {
+                        slide.style.backgroundImage = `url(${bgUrl})`;
+                        const placeholder = slide.querySelector('.img-placeholder');
+                        if (placeholder) placeholder.style.display = 'none';
+                    };
+                    img.onerror = () => {
+                        console.error('Failed to load slider image:', bgUrl);
+                    };
+                }
+            });
+        }
+        
+        // Initialize slider images
+        preloadSliderImages();
+        
+        function showSlide(index) {
+            // Wrap around if index is out of bounds
+            if (index >= slides.length) currentSlide = 0;
+            else if (index < 0) currentSlide = slides.length - 1;
+            else currentSlide = index;
+            
+            // Move slides container with smooth transition
+            const slidesContainer = document.querySelector('.slides');
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+            
+            // Reset auto slide timer
+            resetAutoSlide();
+            
+            // Preload next and previous images for smoother transitions
+            preloadAdjacentImages();
+        }
+        
+        function preloadAdjacentImages() {
+            const nextIndex = (currentSlide + 1) % slides.length;
+            const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+            
+            [nextIndex, prevIndex].forEach(index => {
+                const slide = slides[index];
+                const bgUrl = slide.getAttribute('data-bg');
+                if (bgUrl && !slide.style.backgroundImage.includes(bgUrl)) {
+                    const img = new Image();
+                    img.src = bgUrl;
+                }
+            });
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        // Event listeners for slider buttons
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        
+        // Event listeners for dots
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => showSlide(i));
+        });
+        
+        // Start auto slide
+        resetAutoSlide();
+        
+        // Pause auto slide on hover
+        heroSlider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        heroSlider.addEventListener('mouseleave', resetAutoSlide);
+        
+        // Header scroll effect
+        const header = document.getElementById('mainHeader');
+        let lastScrollTop = 0;
+        let isScrolling;
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Hide main header on scroll down, show on scroll up
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+            
+            // Clear timeout while scrolling
+            clearTimeout(isScrolling);
+            
+            // Show header when scrolling stops
+            isScrolling = setTimeout(() => {
+                header.classList.remove('hidden');
+            }, 150);
+        });
+        
+        // Image loading optimization
+        function loadImages() {
+            const images = document.querySelectorAll('img, .product-img-main, .product-img-hover');
+            
+            images.forEach(img => {
+                // Check if image is already loaded
+                if (img.complete) {
+                    img.classList.add('img-loaded');
+                    const placeholder = img.parentElement.querySelector('.img-placeholder');
+                    if (placeholder) placeholder.style.display = 'none';
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('img-loaded');
+                        const placeholder = this.parentElement.querySelector('.img-placeholder');
+                        if (placeholder) placeholder.style.display = 'none';
+                    });
+                    
+                    img.addEventListener('error', function() {
+                        console.error('Failed to load image:', this.src);
+                        const placeholder = this.parentElement.querySelector('.img-placeholder');
+                        if (placeholder) placeholder.style.display = 'none';
+                    });
+                }
+            });
+        }
+        
+        // Initialize image loading
+        window.addEventListener('load', loadImages);
+        
+        // Scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for scroll animations
+        document.querySelectorAll('.product-card, .collection-card, .simple-feature, .section-title').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = document.querySelector('.search-button');
+        
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                alert(`Searching for: "${query}" - This would normally redirect to search results.`);
+            }
+        });
+        
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchButton.click();
+            }
+        });
+        
+        // Smooth scroll to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Skip if it's just "#"
+                if (href === '#') return;
+                
+                e.preventDefault();
+                
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Enhanced touch support for mobile swiping on slider
+        heroSlider.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isSwiping = false;
+        }, { passive: true });
+        
+        heroSlider.addEventListener('touchmove', (e) => {
+            // Don't prevent default - allow normal scrolling
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+            
+            const dx = touchX - touchStartX;
+            const dy = touchY - touchStartY;
+            
+            // If horizontal movement is greater than vertical, it's a swipe
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+                isSwiping = true;
+            }
+            
+            // If it's a swipe, prevent vertical scroll
+            if (isSwiping) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        heroSlider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            touchEndY = e.changedTouches[0].clientY;
+            
+            handleSwipe();
+            isSwiping = false;
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const dx = touchStartX - touchEndX;
+            const dy = touchStartY - touchEndY;
+            
+            // Only consider it a horizontal swipe if horizontal movement is greater than vertical
+            if (Math.abs(dx) > Math.abs(dy)) {
+                if (dx > SWIPE_THRESHOLD) {
+                    // Swipe left - next slide
+                    nextSlide();
+                }
+                
+                if (dx < -SWIPE_THRESHOLD) {
+                    // Swipe right - previous slide
+                    prevSlide();
+                }
+            }
+        }
+        
+        // Performance optimization - debounce resize events
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Recalculate if needed
+            }, 250);
+        });
+        
+        // Product Modal Functionality
+        const productModal = document.getElementById('productModal');
+        const closeModal = document.getElementById('closeModal');
+        const viewDetailsButtons = document.querySelectorAll('.view-details');
+        const modalProductTitle = document.getElementById('modalProductTitle');
+        const modalMainImage = document.getElementById('modalMainImage');
+        const modalThumbnails = document.getElementById('modalThumbnails');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalMaterials = document.getElementById('modalMaterials');
+        const modalCategories = document.getElementById('modalCategories');
+        const modalRating = document.getElementById('modalRating');
+        const modalReviews = document.getElementById('modalReviews');
+        const enterCustomSizesBtn = document.getElementById('enterCustomSizesBtn');
+        const sizeOptions = document.querySelectorAll('.size-option');
+        const whatsappEnquireBtn = document.getElementById('whatsappEnquireBtn');
+        
+        // Custom Size Modal Functionality
+        const customSizeModal = document.getElementById('customSizeModal');
+        const closeCustomSizeModal = document.getElementById('closeCustomSizeModal');
+        const backToProductBtn = document.getElementById('backToProductBtn');
+        const submitCustomSizesBtn = document.getElementById('submitCustomSizes');
+        const customSizeForm = document.getElementById('customSizeForm');
+        
+        // Current product ID
+        let currentProductId = null;
+        
+        // Product data
+        const products = {
+            1: {
+                title: "Traditional Anarkali",
+                mainImage: "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali.jpg",
+                images: [
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali1.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkaliset2.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkaliset3.jpg"
+                ],
+                description: "Flowing Anarkali suits with intricate embroidery and traditional Kerala motifs. This elegant piece is perfect for weddings, festivals, and special occasions. Made with premium quality fabric that drapes beautifully.",
+                materials: [
+                    "Handwoven Silk Blend Fabric",
+                    "Traditional Zari Thread Embroidery",
+                    "Premium Cotton Lining",
+                    "Eco-friendly Natural Dyes",
+                    "Reinforced Seams for Durability"
+                ],
+                categories: ["Anarkali", "Traditional Wear", "Festival Collection", "Bridal Party", "Custom Designs"],
+                rating: 4.5,
+                reviews: [
+                    {
+                        name: "Sophia M.",
+                        date: "June 12, 2023",
+                        text: "Absolutely love my Anarkali! The quality is exceptional and it fit perfectly. I received so many compliments at the wedding I attended."
+                    },
+                    {
+                        name: "Isabella R.",
+                        date: "May 28, 2023",
+                        text: "Beautiful design and the material feels luxurious. The custom sizing option made it fit like a dream. Will definitely order again!"
+                    },
+                    {
+                        name: "Priya S.",
+                        date: "April 15, 2023",
+                        text: "The traditional Kerala motifs are stunning. The attention to detail is remarkable. Perfect for my sister's wedding!"
+                    }
+                ]
+            },
+            2: {
+                title: "Designer Kurtas",
+                mainImage: "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designer1kurtha.jpg",
+                images: [
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designer1kurtha.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designer2kurtha.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designerfrock.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Pleated1frock.jpg"
+                ],
+                description: "Contemporary kurtas with traditional Kerala borders and modern silhouettes. Perfect for both casual and formal occasions, these kurtas blend traditional craftsmanship with contemporary style.",
+                materials: [
+                    "Premium Cotton Fabric",
+                    "Traditional Kerala Borders",
+                    "Hand-block Printing",
+                    "Natural Vegetable Dyes",
+                    "Comfortable Fit Design"
+                ],
+                categories: ["Kurtas", "Casual Wear", "Office Wear", "Traditional Modern", "Everyday Collection"],
+                rating: 4.2,
+                reviews: [
+                    {
+                        name: "Rahul K.",
+                        date: "July 5, 2023",
+                        text: "Perfect for office wear! The fabric is breathable and the traditional borders add a unique touch. Very comfortable all day."
+                    },
+                    {
+                        name: "Anjali P.",
+                        date: "June 20, 2023",
+                        text: "Love the modern silhouette with traditional elements. The quality is excellent and it washes well. Highly recommended!"
+                    }
+                ]
+            },
+            3: {
+                title: "Designer Frocks",
+                mainImage: "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designerfrock.jpg",
+                images: [
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designerfrock.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designerfrock1.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Anarkali1.jpg"
+                ],
+                description: "Elegant frocks blending traditional Kerala craftsmanship with modern design. These designer frocks feature intricate detailing and are perfect for special occasions and celebrations.",
+                materials: [
+                    "Chiffon Blend Fabric",
+                    "Intricate Hand Embroidery",
+                    "Silk Satin Lining",
+                    "Pearl and Stone Work",
+                    "Adjustable Straps"
+                ],
+                categories: ["Designer Frocks", "Evening Wear", "Special Occasion", "Party Wear", "Festival Collection"],
+                rating: 4.7,
+                reviews: [
+                    {
+                        name: "Meera N.",
+                        date: "August 10, 2023",
+                        text: "Stunning frock! The embroidery is exquisite and the fit is perfect. I felt like a princess at my graduation party."
+                    },
+                    {
+                        name: "Sarah J.",
+                        date: "July 28, 2023",
+                        text: "The craftsmanship is outstanding. The attention to detail is remarkable. Worth every penny!"
+                    },
+                    {
+                        name: "Lakshmi R.",
+                        date: "July 15, 2023",
+                        text: "Beautiful blend of traditional and modern. The fabric drapes beautifully and the colors are vibrant."
+                    }
+                ]
+            },
+            4: {
+                title: "Pleated Frocks",
+                mainImage: "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Pleated1frock.jpg",
+                images: [
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Pleated1frock.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Pleated2frock.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designerfrock.jpg",
+                    "https://raw.githubusercontent.com/ashonbaiju/ziyadesigns1/main/Designerfrock1.jpg"
+                ],
+                description: "Graceful pleated frocks with handcrafted details and comfortable fits. These frocks feature beautiful pleating techniques that create elegant movement and silhouette.",
+                materials: [
+                    "Georgette Fabric",
+                    "Hand-pleated Design",
+                    "Lightweight Construction",
+                    "Contrast Borders",
+                    "Easy Care Material"
+                ],
+                categories: ["Pleated Frocks", "Casual Wear", "Day Outfits", "Summer Collection", "Comfort Wear"],
+                rating: 4.3,
+                reviews: [
+                    {
+                        name: "Neha S.",
+                        date: "September 2, 2023",
+                        text: "So comfortable and elegant! The pleats are beautifully done and the fabric is perfect for summer weather."
+                    },
+                    {
+                        name: "Divya M.",
+                        date: "August 20, 2023",
+                        text: "Love the simplicity and elegance. Perfect for brunches and casual outings. The quality is excellent."
+                    },
+                    {
+                        name: "Riya P.",
+                        date: "August 5, 2023",
+                        text: "The pleats add such graceful movement. Very flattering silhouette and comfortable to wear all day."
+                    }
+                ]
+            }
+        };
+        
+        // Open product modal when clicking "View Details"
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productCard = button.closest('.product-card');
+                const productId = productCard.getAttribute('data-product');
+                openProductModal(productId);
+            });
+        });
+        
+        // Open product modal function
+        function openProductModal(productId) {
+            currentProductId = productId;
+            const product = products[productId];
+            if (!product) return;
+            
+            // Set modal content
+            modalProductTitle.textContent = product.title;
+            modalMainImage.src = product.images[0];
+            modalDescription.textContent = product.description;
+            
+            // Clear and set materials
+            modalMaterials.innerHTML = '';
+            product.materials.forEach(material => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-check-circle"></i> ${material}`;
+                modalMaterials.appendChild(li);
+            });
+            
+            // Clear and set categories
+            modalCategories.innerHTML = '';
+            product.categories.forEach(category => {
+                const span = document.createElement('span');
+                span.className = 'category-tag';
+                span.textContent = category;
+                modalCategories.appendChild(span);
+            });
+            
+            // Set rating
+            modalRating.innerHTML = `
+                <div class="stars">
+                    ${getStarRating(product.rating)}
+                </div>
+                <span class="rating-value">${product.rating}</span>
+                <span class="review-count">(${product.reviews.length} reviews)</span>
+            `;
+            
+            // Clear and set reviews
+            modalReviews.innerHTML = '';
+            product.reviews.forEach(review => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.className = 'review';
+                reviewDiv.innerHTML = `
+                    <div class="review-header">
+                        <span class="reviewer-name">${review.name}</span>
+                        <span class="review-date">${review.date}</span>
+                    </div>
+                    <div class="review-text">${review.text}</div>
+                `;
+                modalReviews.appendChild(reviewDiv);
+            });
+            
+            // Clear and set thumbnails
+            modalThumbnails.innerHTML = '';
+            product.images.forEach((image, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `modal-thumbnail ${index === 0 ? 'active' : ''}`;
+                thumbnail.innerHTML = `<img src="${image}" alt="${product.title} ${index + 1}">`;
+                
+                thumbnail.addEventListener('click', () => {
+                    // Update main image
+                    modalMainImage.src = image;
+                    
+                    // Update active thumbnail
+                    document.querySelectorAll('.modal-thumbnail').forEach(thumb => {
+                        thumb.classList.remove('active');
+                    });
+                    thumbnail.classList.add('active');
+                });
+                
+                modalThumbnails.appendChild(thumbnail);
+            });
+            
+            // Setup WhatsApp enquiry button
+            whatsappEnquireBtn.onclick = function() {
+                const message = `Hello ZIYA Designs! I am interested in your ${product.title}. Could you please provide more details about this product?`;
+                const whatsappUrl = `https://wa.me/918078720263?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            };
+            
+            // Open product modal
+            productModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Open custom size modal when clicking "Enter Custom Sizes"
+        enterCustomSizesBtn.addEventListener('click', () => {
+            // Close product modal
+            productModal.classList.remove('active');
+            // Open custom size modal
+            customSizeModal.classList.add('active');
+        });
+        
+        // Close custom size modal and go back to product modal
+        backToProductBtn.addEventListener('click', () => {
+            customSizeModal.classList.remove('active');
+            productModal.classList.add('active');
+        });
+        
+        // Close custom size modal with close button
+        closeCustomSizeModal.addEventListener('click', () => {
+            customSizeModal.classList.remove('active');
+        });
+        
+        // Close custom size modal when clicking outside content
+        customSizeModal.addEventListener('click', (e) => {
+            if (e.target === customSizeModal) {
+                customSizeModal.classList.remove('active');
+            }
+        });
+        
+        // Submit custom size form
+        submitCustomSizesBtn.addEventListener('click', () => {
+            // Required fields
+            const bust = document.getElementById('bust').value;
+            const waist = document.getElementById('waist').value;
+            const height = document.getElementById('height').value;
+            const hips = document.getElementById('hips').value;
+            const shoulderToShoulder = document.getElementById('shoulder-to-shoulder').value;
+            const armLength = document.getElementById('arm-length').value;
+            const shoulderToWaist = document.getElementById('shoulder-to-waist').value;
+            const address = document.getElementById('address').value;
+            
+            if (bust && waist && height && hips && shoulderToShoulder && armLength && shoulderToWaist && address) {
+                // Get product data
+                const product = products[currentProductId];
+                const productName = product.title;
+                
+                // Get other form values
+                const bicep = document.getElementById('bicep').value || 'Not specified';
+                const garmentLength = document.getElementById('garment-length').value || 'Not specified';
+                const sleeveLength = document.getElementById('sleeve-length').value || 'Not specified';
+                const additionalNotes = document.getElementById('additional-notes').value || 'None';
+                
+                // Create WhatsApp message with all form data including address
+                const message = `*CUSTOM ORDER REQUEST*%0A%0A*Product:* ${productName}%0A%0A*MEASUREMENT DETAILS:*%0A• Bust/Chest: ${bust} inches%0A• Waist: ${waist} inches%0A• Height (Barebody): ${height} inches%0A• Hips: ${hips} inches%0A• Shoulder to Shoulder (Back): ${shoulderToShoulder} inches%0A• Arm Length: ${armLength} inches%0A• Bicep: ${bicep} inches%0A• Shoulder to Waist: ${shoulderToWaist} inches%0A• Desired Garment Length: ${garmentLength}%0A• Sleeve Length: ${sleeveLength}%0A• Additional Notes: ${additionalNotes}%0A%0A*SHIPPING ADDRESS:*%0A${address}%0A%0APlease contact me to proceed with this custom order. Thank you!`;
+                
+                const whatsappUrl = `https://wa.me/918078720263?text=${message}`;
+                
+                // Open WhatsApp with the message
+                window.open(whatsappUrl, '_blank');
+                
+                // Show success message
+                alert('Thank you! Your custom size specifications and address have been submitted. You will now be redirected to WhatsApp to complete your order.');
+                
+                // Close modal
+                customSizeModal.classList.remove('active');
+                
+                // Reset form
+                customSizeForm.reset();
+            } else {
+                alert('Please fill in all required fields (marked with *) before submitting. This includes Bust, Waist, Height, Hips, Shoulder to Shoulder, Arm Length, Shoulder to Waist, and Shipping Address.');
+            }
+        });
+        
+        // Helper function to generate star rating
+        function getStarRating(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+        
+        // Close product modal
+        closeModal.addEventListener('click', () => {
+            productModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Close product modal when clicking outside content
+        productModal.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                productModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close modals with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (productModal.classList.contains('active')) {
+                    productModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                if (customSizeModal.classList.contains('active')) {
+                    customSizeModal.classList.remove('active');
+                }
+            }
+        });
+        
+        // Size selection
+        sizeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+        
+        // Preload product images for modal
+        function preloadProductImages() {
+            Object.values(products).forEach(product => {
+                product.images.forEach(imageUrl => {
+                    const img = new Image();
+                    img.src = imageUrl;
+                });
+            });
+        }
+        
+        // Initialize product image preloading
+        window.addEventListener('load', preloadProductImages);
+        
+        // Mobile-specific optimizations
+        if (window.innerWidth <= 768) {
+            // Reduce animation duration for mobile
+            document.documentElement.style.setProperty('--transition', 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)');
+            
+            // Optimize slider for touch
+            heroSlider.style.touchAction = 'pan-y pinch-zoom';
+            
+            // Ensure body can scroll normally
+            document.body.style.overflowX = 'hidden';
+            document.body.style.overflowY = 'auto';
+        }
+        
+        // Fix for iOS scrolling issues
+        document.addEventListener('touchmove', function(e) {
+            // Allow normal scrolling on everything except the slider during horizontal swipes
+            const isSlider = e.target.closest('.hero-slider');
+            if (isSlider) {
+                // We'll handle this in the slider's touch handlers
+                return;
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>
